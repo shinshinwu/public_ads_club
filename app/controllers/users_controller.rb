@@ -17,10 +17,23 @@ class UsersController < ApplicationController
     else
       flash[:error] = "Something went wrong!"
     end
-    redirect_to root_url
+    redirect_to profile_users_path
+  end
+
+  def edit
   end
 
   def update
+    @user.email       = params[:user][:email]
+    @user.first_name  = params[:user][:first_name]
+    @user.last_name   = params[:user][:last_name]
+    @user.phone       = params[:user][:phone]
+    if @user.save
+      flash[:success] = "Profile Updated!"
+    else
+      flash[:eroor] = "Something went wrong when saving your profile"
+    end
+    redirect_to profile_users_path
   end
 
   private

@@ -5,13 +5,15 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'listings#index'
 
-  resources :users, only: [:new, :create, :update] do
+  resources :users, only: [:new, :create] do
     collection do
       get '/signup',    to: 'users#new'
       get '/login',     to: 'sessions#new'
       post '/login',    to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'
       get '/profile',   to: 'users#show'
+      get '/edit',      to: 'users#edit'
+      put '/edit',      to: 'users#update'
     end
   end
 
