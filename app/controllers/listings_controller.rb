@@ -21,7 +21,43 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new
+    @listing = Listing.new(user_id: current_user.id)
+
+    begin
+    ActiveRecord::Base.transaction do
+      @listing.title        = params[:listing][:title]
+      @listing.description  = params[:listing][:description]
+      @listing.company_name = params[:listing][:company_name]
+      @listing.phone  = params[:listing][:phone]
+      @listing.ref_id = params[:listing][:ref_id]
+      @listing.width  = params[:listing][:width].to_i
+      @listing.height = params[:listing][:height].to_i
+      @listing.base_amount  = params[:listing][:base_amount].to_i
+      @listing.recurring_amount = params[:listing][:recurring_amount].to_i
+      @listing.charge_frequency = params[:listing][:charge_frequency]
+      @listing.min_lease_days   = params[:listing][:min_lease_days]
+      @listing.is_available     = params[:listing][:is_available].to_i == 1
+      @listing.photo  = params[:listing][:photo]
+
+      @listing.save!
+
+      @address = Address.new(listing_id: @listing.id)
+      @address.line_1   = params[:listing][:address][:line_1]
+      @address.line_2   = params[:listing][:address][:line_2]
+      @address.city     = params[:listing][:address][:city]
+      @address.state    = params[:listing][:address][:state]
+      @address.zipcode  = params[:listing][:address][:zipcode]
+      @address.country  = params[:listing][:address][:country]
+
+      @address.save!
+    end
+    rescue => e
+      flash[:error] = "#{e.message}"
+      redirect_to new_listing_path and return
+    end
+
+    flash[:success] = "Your listing is successfully posted!"
+    redirect_to listing_path(@listing)
   end
 
   def update
@@ -30,7 +66,7 @@ class ListingsController < ApplicationController
   private
 
   def set_listing_context
-    @listing = Listing.where(id: param[:id]).first
+    @listing = Listing.where(id: params[:id]).first
     if @listing.nil?
       flash[:error] = "Sorry, listing not found"
       redirect_to listings_path

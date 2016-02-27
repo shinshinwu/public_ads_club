@@ -1,4 +1,4 @@
-<%= form_for @listing, url: url, method: method, html: {class: "form"} do |f| %>
+<%= form_for @listing, url: url, method: method, html: {class: "form", multipart: true} do |f| %>
   <fieldset>
 
   <h3>Listing Location</h3>
@@ -20,12 +20,12 @@
 
   <div>
     <%= label :zipcode, "Zip Code" %>
-    <%= number_field_tag "listing[address][zipcode]" %>
+    <%= text_field_tag "listing[address][zipcode]" %>
   </div>
 
   <div>
     <%= label :country, "Country" %>
-    <%= number_field_tag "listing[address][country]" %>
+    <%= text_field_tag "listing[address][country]" %>
   </div>
 
   <h3>Listing Details</h3>
@@ -89,7 +89,7 @@
   </div>
 
   <div>
-    <button>Upload Image</button>
+    <%= f.file_field :photo %>
   </div>
 
   <div>

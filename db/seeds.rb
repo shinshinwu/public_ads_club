@@ -7,8 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 listings = Listing.create([
-  {user_id: 1, title: "Awesome Ad Space", description: "Life is too short for shitty ads (space)", width: 20, height: 30, base_amount: 100, recurring_amount: 50.95, is_available: true, img_url: "http://advertiise.com/media/wysiwyg/AdvertiiseSellers.png", phone: "1231231234", ref_id: "vd-2342", charge_frequency: "yearly", company_name: "Best Ad Provider", min_lease_days: 30},
-  {user_id: 1, title: "Awesome Ad Space #2", description: "Life is too short for shitty ads (space)", width: 50, height: 80, base_amount: 150.99, recurring_amount: 100.95, is_available: false, img_url: "http://www.crowdflow.io/wp-content/uploads/2016/01/ad-space-in-event-sponsorship.png", phone: "1231231235", charge_frequency: "monthly" ,ref_id: "sf-2342", company_name: "Best Ad Provider", min_lease_days: 31}
+  {user_id: 1, title: "Awesome Ad Space", description: "Life is too short for shitty ads (space)", width: 20, height: 30, base_amount: 100, recurring_amount: 50.95, is_available: true, phone: "1231231234", ref_id: "vd-2342", charge_frequency: "yearly", company_name: "Best Ad Provider", min_lease_days: 30},
+  {user_id: 1, title: "Awesome Ad Space #2", description: "Life is too short for shitty ads (space)", width: 50, height: 80, base_amount: 150.99, recurring_amount: 100.95, is_available: false, phone: "1231231235", charge_frequency: "monthly" ,ref_id: "sf-2342", company_name: "Best Ad Provider", min_lease_days: 31}
 ])
 
 addresses = Address.create([
