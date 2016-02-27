@@ -8,7 +8,34 @@
 </head>
 <body>
 
-<%= yield %>
+  <header>
+    <ul>
+      <% unless logged_in? -%>
+        <li>
+          <%= link_to "Sign Up", signup_users_path %>
+        </li>
+        <li>
+          <%= link_to "Login", login_users_path %>
+        </li>
+      <% else -%>
+        <li>
+          <%= link_to "Profile", profile_users_path %>
+        </li>
+        <li>
+          <%= link_to "Logout", logout_users_path, method: "delete" %>
+        </li>
+      <% end %>
+    </ul>
+  </header>
+
+
+  <div class="content">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+
+    <%= yield %>
+  </div>
 
 </body>
 </html>

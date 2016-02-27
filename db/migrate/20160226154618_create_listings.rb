@@ -14,7 +14,7 @@ class CreateListings < ActiveRecord::Migration
       t.float      :base_amount
       t.float      :recurring_amount
       t.string     :charge_frequency
-      t.date       :expire_at
+      t.integer    :min_lease
 
       t.timestamps
     end

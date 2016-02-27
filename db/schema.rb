@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20160226155732) do
     t.float    "base_amount"
     t.float    "recurring_amount"
     t.string   "charge_frequency"
-    t.date     "expire_at"
+    t.integer  "min_lease"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 20160226155732) do
     t.integer  "recipient_id"
     t.string   "subject"
     t.text     "body"
+    t.date     "start_date"
+    t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

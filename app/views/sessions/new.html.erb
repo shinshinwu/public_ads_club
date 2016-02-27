@@ -1,0 +1,14 @@
+<%= form_for(:session, url: {action: "create"}, html: {class: "form"}) do |f| %>
+  <fieldset>
+  <legend>Log In</legend>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "Log In"%>
+  <p>New user? <%= link_to "Sign up now!", signup_users_path %></p>
+  </fieldset>
+<% end %>

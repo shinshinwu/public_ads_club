@@ -6,6 +6,8 @@ class CreateMessages < ActiveRecord::Migration
       t.integer     :recipient_id
       t.string      :subject
       t.text        :body
+      t.date        :start_date
+      t.date        :end_date
 
       t.timestamps
     end
