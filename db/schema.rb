@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20160226155732) do
     t.float    "base_amount"
     t.float    "recurring_amount"
     t.string   "charge_frequency"
-    t.integer  "min_lease"
+    t.integer  "min_lease_days"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

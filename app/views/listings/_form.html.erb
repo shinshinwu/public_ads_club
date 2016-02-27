@@ -1,0 +1,99 @@
+<%= form_for @listing, url: url, method: method, html: {class: "form"} do |f| %>
+  <fieldset>
+
+  <h3>Listing Location</h3>
+
+  <div>
+    <%= label :line_1, "Cross Street (ex: Summer St and Spring St)" %>
+    <%= text_field_tag "listing[address][line_1]" %> and <%= text_field_tag "listing[address][line_2]" %>
+  </div>
+
+  <div>
+    <%= label :city, "City" %>
+    <%= text_field_tag "listing[address][city]" %>
+  </div>
+
+  <div>
+    <%= label :state, "State" %>
+    <%= text_field_tag "listing[address][state]" %>
+  </div>
+
+  <div>
+    <%= label :zipcode, "Zip Code" %>
+    <%= number_field_tag "listing[address][zipcode]" %>
+  </div>
+
+  <div>
+    <%= label :country, "Country" %>
+    <%= number_field_tag "listing[address][country]" %>
+  </div>
+
+  <h3>Listing Details</h3>
+
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :company_name %>
+    <%= f.text_field :company_name, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :phone %>
+    <%= f.telephone_field :phone, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :ref_id, "Reference ID" %>
+    <%= f.text_field :ref_id, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :width, "Width (inches)" %>
+    <%= f.number_field :width, required: true, min: 0 %>
+  </div>
+
+  <div>
+    <%= f.label :height, "Height (inches)" %>
+    <%= f.number_field :height, required: true, min: 0 %>
+  </div>
+
+  <div>
+    <%= f.label :base_amount, "One Time Base Charge" %>
+    $<%= f.number_field :base_amount, required: true, min: 0 %>
+  </div>
+
+  <div>
+    <%= f.label :recurring_amount, "Recurring Charges" %>
+    $<%= f.number_field :recurring_amount, required: true, min: 0 %> per <%= f.select :charge_frequency, options_for_select([["Day", "daily"], ["Week", "weekly"], ["Month", "monthly"], ["Year", "yearly"]]) %>
+  </div>
+
+  <div>
+    <%= f.label :min_lease_days, "Minimum Days to Lease" %>
+    <%= f.number_field :min_lease_days, required: true, min: 1 %> Days
+  </div>
+
+  <div>
+    <%= f.label :is_available, "Currently Available?" %>
+    <%= f.radio_button :is_available, 1 %>
+    <%= label :is_available, 'Yes' %>
+    <%= f.radio_button :is_available, 0 %>
+    <%= label :is_available, 'No' %>
+  </div>
+
+  <div>
+    <button>Upload Image</button>
+  </div>
+
+  <div>
+    <%= f.submit "Submit", :class => 'button' %>
+  </div>
+  </fieldset>
+<% end %>

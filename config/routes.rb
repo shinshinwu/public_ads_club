@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :listings, only: [:index] do
+  resources :listings do
   end
 end

@@ -1,1 +1,26 @@
-You are on the listing index page
+<h1>All Listings</h1>
+
+<% @listings.each do |listing| %>
+  <ul>
+    <%= image_tag(listing.img_url) %>
+    <li><%= listing.title %></li>
+    <li><%= listing.is_available ? "Available" : "Unavailable" %></li>
+    <section>
+      <h3>Address:</h3>
+      <ul>
+        <li><%= listing.address.line_1 %> <%= listing.address.line_2 %></li>
+        <li><%= listing.address.city %>, <%= listing.address.state %> <%= listing.address.zipcode %></li>
+        <li><%= listing.address.country %></li>
+      </ul>
+    </section>
+    <li>Description: <%= listing.description %></li>
+    <li>Owned by: <%= listing.company_name %></li>
+    <li>Reference ID: <%= listing.ref_id %></li>
+    <li>Width: <%= listing.width %> inches</li>
+    <li>Height: <%= listing.height %> inches</li>
+    <li>Once time base cost: <%= number_to_currency(listing.base_amount) %></li>
+    <li>Recurring cost: <%= number_to_currency(listing.recurring_amount) %> charged <%= listing.charge_frequency %></li>
+    <li>Minimum Lease: <%= distance_of_time_in_words_to_now(listing.min_lease_days.days.from_now) %></li>
+    <button>Contact</button>
+  </ul>
+<% end %>

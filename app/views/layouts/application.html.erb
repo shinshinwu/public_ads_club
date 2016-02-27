@@ -10,6 +10,9 @@
 
   <header>
     <ul>
+      <li>
+        <%= link_to "Home", root_path %>
+      </li>
       <% unless logged_in? -%>
         <li>
           <%= link_to "Sign Up", signup_users_path %>
@@ -20,6 +23,9 @@
       <% else -%>
         <li>
           <%= link_to "Profile", profile_users_path %>
+        </li>
+        <li>
+          <%= link_to "Create Listing", new_listing_path %>
         </li>
         <li>
           <%= link_to "Logout", logout_users_path, method: "delete" %>
