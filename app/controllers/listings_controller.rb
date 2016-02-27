@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
-  before_filter :authenticate_user!, only: [:create, :update]
-  before_filter :set_listing_context, only: [:show, :edit, :update]
+  before_filter :authenticate_user!, only: [:create, :update, :messages]
+  before_filter :set_listing_context, only: [:show, :edit, :update, :messages]
 
   def index
     @listings = Listing.includes(:address)
@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    unless @listing.user == current_user
+    unless @listing.user == @user
       flash[:error] = "Sorry, you do not have authorization to edit this listing"
       redirect_to :back
     end
@@ -61,15 +61,25 @@ class ListingsController < ApplicationController
     redirect_to listing_path(@listing)
   end
 
+  def messages
+    @messages = @listing.messages.order(:created_at)
+    # make sure the current user is either the sender or recipient of the messages
+    unless @messages.pluck(:sender_id).uniq.include?(@user.id) || @messages.pluck(:recipient_id).uniq.include?(@user.id)
+      flash[:error] = "Sorry, messages not found"
+      redirect_to listing_path(@listing) and return
+    end
+  end
+
   private
 
   def set_listing_context
     @listing = Listing.where(id: params[:id]).first
     if @listing.nil?
       flash[:error] = "Sorry, listing not found"
-      redirect_to listings_path
+      redirect_to listings_path and return
     end
     @address = @listing.address
+    @user = current_user
   end
 
   def set_listing_params

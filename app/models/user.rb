@@ -8,4 +8,12 @@ class User < ActiveRecord::Base
                        :format => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   has_secure_password
 
+  def name
+    if first_name.present? && last_name.present?
+      return first_name + " " + last_name
+    else
+      return nil
+    end
+  end
+
 end

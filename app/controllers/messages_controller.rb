@@ -2,9 +2,6 @@ class MessagesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :set_message_context, only: [:create]
 
-  def show
-  end
-
   def create
     @message = Message.new
     @message.listing_id = @listing.id

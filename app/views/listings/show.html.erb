@@ -25,7 +25,9 @@
   <li>Once time base cost: <%= number_to_currency(@listing.base_amount) %></li>
   <li>Recurring cost: <%= number_to_currency(@listing.recurring_amount) %> charged <%= @listing.charge_frequency %></li>
   <li>Minimum Lease: <%= distance_of_time_in_words_to_now(@listing.min_lease_days.days.from_now) %></li>
-  <button id="contact-button">Contact</button>
+  <% if @listing.user != current_user %>
+    <button id="contact-button">Contact</button>
+  <% end %>
 </ul>
 
 <div id="contact-listing">

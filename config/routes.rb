@@ -18,8 +18,11 @@ Rails.application.routes.draw do
   end
 
   resources :listings do
+    member do
+      get 'messages',   to: 'listings#messages'
+    end
   end
 
-  resources :messages, only: [:create, :show] do
+  resources :messages, only: [:create] do
   end
 end
