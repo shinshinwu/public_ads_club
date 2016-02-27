@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_filter :authenticate_user!, only: [:create, :update]
-  before_filter :set_listing_context, only: [:show, :edit]
+  before_filter :set_listing_context, only: [:show, :edit, :update]
 
   def index
     @listings = Listing.includes(:address)
@@ -8,6 +8,7 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
+    @address = Address.new
   end
 
   def edit
@@ -24,33 +25,13 @@ class ListingsController < ApplicationController
     @listing = Listing.new(user_id: current_user.id)
 
     begin
-    ActiveRecord::Base.transaction do
-      @listing.title        = params[:listing][:title]
-      @listing.description  = params[:listing][:description]
-      @listing.company_name = params[:listing][:company_name]
-      @listing.phone  = params[:listing][:phone]
-      @listing.ref_id = params[:listing][:ref_id]
-      @listing.width  = params[:listing][:width].to_i
-      @listing.height = params[:listing][:height].to_i
-      @listing.base_amount  = params[:listing][:base_amount].to_i
-      @listing.recurring_amount = params[:listing][:recurring_amount].to_i
-      @listing.charge_frequency = params[:listing][:charge_frequency]
-      @listing.min_lease_days   = params[:listing][:min_lease_days]
-      @listing.is_available     = params[:listing][:is_available].to_i == 1
-      @listing.photo  = params[:listing][:photo]
-
-      @listing.save!
-
-      @address = Address.new(listing_id: @listing.id)
-      @address.line_1   = params[:listing][:address][:line_1]
-      @address.line_2   = params[:listing][:address][:line_2]
-      @address.city     = params[:listing][:address][:city]
-      @address.state    = params[:listing][:address][:state]
-      @address.zipcode  = params[:listing][:address][:zipcode]
-      @address.country  = params[:listing][:address][:country]
-
-      @address.save!
-    end
+      ActiveRecord::Base.transaction do
+        set_listing_params
+        @listing.save!
+        @address = Address.new(listing_id: @listing.id)
+        set_address_params
+        @address.save!
+      end
     rescue => e
       flash[:error] = "#{e.message}"
       redirect_to new_listing_path and return
@@ -61,6 +42,23 @@ class ListingsController < ApplicationController
   end
 
   def update
+    if params[:listing][:photo]
+      @listing.photo = nil
+      @listing.save
+    end
+
+    begin
+      set_listing_params
+      @listing.save!
+      set_address_params
+      @address.save!
+    rescue => e
+      flash[:error] = "#{e.message}"
+      redirect_to :back and return
+    end
+
+    flash[:success] = "Successfully updated listing!"
+    redirect_to listing_path(@listing)
   end
 
   private
@@ -71,6 +69,32 @@ class ListingsController < ApplicationController
       flash[:error] = "Sorry, listing not found"
       redirect_to listings_path
     end
+    @address = @listing.address
+  end
+
+  def set_listing_params
+    @listing.title        = params[:listing][:title]
+    @listing.description  = params[:listing][:description]
+    @listing.company_name = params[:listing][:company_name]
+    @listing.phone  = params[:listing][:phone]
+    @listing.ref_id = params[:listing][:ref_id]
+    @listing.width  = params[:listing][:width].to_i
+    @listing.height = params[:listing][:height].to_i
+    @listing.base_amount  = params[:listing][:base_amount].to_i
+    @listing.recurring_amount = params[:listing][:recurring_amount].to_i
+    @listing.charge_frequency = params[:listing][:charge_frequency]
+    @listing.min_lease_days   = params[:listing][:min_lease_days]
+    @listing.is_available     = params[:listing][:is_available].to_i == 1
+    @listing.photo  = params[:listing][:photo]
+  end
+
+  def set_address_params
+    @address.line_1   = params[:listing][:address][:line_1]
+    @address.line_2   = params[:listing][:address][:line_2]
+    @address.city     = params[:listing][:address][:city]
+    @address.state    = params[:listing][:address][:state]
+    @address.zipcode  = params[:listing][:address][:zipcode]
+    @address.country  = params[:listing][:address][:country]
   end
 
 end

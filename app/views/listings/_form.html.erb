@@ -5,27 +5,27 @@
 
   <div>
     <%= label :line_1, "Cross Street (ex: Summer St and Spring St)" %>
-    <%= text_field_tag "listing[address][line_1]" %> and <%= text_field_tag "listing[address][line_2]" %>
+    <%= text_field_tag "listing[address][line_1]", @address.line_1 %> and <%= text_field_tag "listing[address][line_2]", @address.line_2 %>
   </div>
 
   <div>
     <%= label :city, "City" %>
-    <%= text_field_tag "listing[address][city]" %>
+    <%= text_field_tag "listing[address][city]", @address.city %>
   </div>
 
   <div>
     <%= label :state, "State" %>
-    <%= text_field_tag "listing[address][state]" %>
+    <%= text_field_tag "listing[address][state]", @address.state %>
   </div>
 
   <div>
     <%= label :zipcode, "Zip Code" %>
-    <%= text_field_tag "listing[address][zipcode]" %>
+    <%= text_field_tag "listing[address][zipcode]", @address.zipcode %>
   </div>
 
   <div>
     <%= label :country, "Country" %>
-    <%= text_field_tag "listing[address][country]" %>
+    <%= text_field_tag "listing[address][country]", @address.country %>
   </div>
 
   <h3>Listing Details</h3>
@@ -67,12 +67,12 @@
 
   <div>
     <%= f.label :base_amount, "One Time Base Charge" %>
-    $<%= f.number_field :base_amount, required: true, min: 0 %>
+    $<%= f.number_field :base_amount, required: true, min: 0, step: 0.01 %>
   </div>
 
   <div>
     <%= f.label :recurring_amount, "Recurring Charges" %>
-    $<%= f.number_field :recurring_amount, required: true, min: 0 %> per <%= f.select :charge_frequency, options_for_select([["Day", "daily"], ["Week", "weekly"], ["Month", "monthly"], ["Year", "yearly"]]) %>
+    $<%= f.number_field :recurring_amount, required: true, min: 0, step: 0.01 %> per <%= f.select :charge_frequency, options_for_select([["Day", "daily"], ["Week", "weekly"], ["Month", "monthly"], ["Year", "yearly"]]) %>
   </div>
 
   <div>

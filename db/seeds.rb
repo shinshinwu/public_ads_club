@@ -12,8 +12,8 @@ listings = Listing.create([
 ])
 
 addresses = Address.create([
-  {listing_id: 1, line_1: "1015 Folsom", line_2: "#1", city: "San Francisco", state: "CA", zipcode: "94103", country: "US"},
-  {listing_id: 2, line_1: "1015 Folsom", line_2: "#1", city: "San Francisco", state: "CA", zipcode: "94103", country: "US"}
+  {listing_id: 1, line_1: "Folsom St", line_2: "5th St", city: "San Francisco", state: "CA", zipcode: "94103", country: "US"},
+  {listing_id: 2, line_1: "Folsom", line_2: "4th St", city: "San Francisco", state: "CA", zipcode: "94103", country: "US"}
 ])
 
 messages = Message.create([
