@@ -1,5 +1,9 @@
 <h1><%= @listing.title %></h1>
 
+<% if @listing.user == current_user %>
+  <%= link_to "Edit Listing", edit_listing_path(@listing) %>
+<% end %>
+
 <ul>
   <%= image_tag(@listing.photo.url) %>
   <li><%= @listing.title %></li>

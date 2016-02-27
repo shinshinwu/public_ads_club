@@ -2,8 +2,10 @@
 
 <% @listings.each do |listing| %>
   <ul>
-    <%= image_tag(listing.img_url) %>
-    <li><%= listing.title %></li>
+    <%= image_tag(listing.photo.url) %>
+    <li>
+      <%= link_to listing.title, listing_path(listing) %>
+    </li>
     <li><%= listing.is_available ? "Available" : "Unavailable" %></li>
     <section>
       <h3>Address:</h3>
