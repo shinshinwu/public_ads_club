@@ -2,7 +2,7 @@ class CreateListings < ActiveRecord::Migration
   def change
     create_table :listings do |t|
       t.references :user
-      t.boolean    :is_available
+      t.boolean    :is_available, default: true
       t.string     :title
       t.text       :description
       t.string     :company_name

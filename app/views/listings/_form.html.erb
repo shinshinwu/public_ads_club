@@ -36,6 +36,11 @@
   </div>
 
   <div>
+    <%= f.label :category, "Type (ex. Billboard, Bus Stop)" %>
+    <%= f.text_field :category, required: true %>
+  </div>
+
+  <div>
     <%= f.label :description %>
     <%= f.text_area :description, required: true %>
   </div>

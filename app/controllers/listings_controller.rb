@@ -73,9 +73,10 @@ class ListingsController < ApplicationController
   end
 
   def set_listing_params
-    @listing.title        = params[:listing][:title]
+    @listing.title        = params[:listing][:title].titleize
+    @listing.category     = params[:listing][:category].titleize
     @listing.description  = params[:listing][:description]
-    @listing.company_name = params[:listing][:company_name]
+    @listing.company_name = params[:listing][:company_name].titleize
     @listing.phone  = params[:listing][:phone]
     @listing.ref_id = params[:listing][:ref_id]
     @listing.width  = params[:listing][:width].to_i

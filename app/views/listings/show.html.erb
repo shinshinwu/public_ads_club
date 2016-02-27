@@ -7,6 +7,7 @@
 <ul>
   <%= image_tag(@listing.photo.url) %>
   <li><%= @listing.title %></li>
+  <li>Type: <%= @listing.category %></li>
   <li><%= @listing.is_available ? "Available" : "Unavailable" %></li>
   <section>
     <h3>Address:</h3>

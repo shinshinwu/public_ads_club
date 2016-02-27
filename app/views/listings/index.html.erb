@@ -7,6 +7,7 @@
       <%= link_to listing.title, listing_path(listing) %>
     </li>
     <li><%= listing.is_available ? "Available" : "Unavailable" %></li>
+    <li>Type: <%= listing.category %></li>
     <section>
       <h3>Address:</h3>
       <ul>
