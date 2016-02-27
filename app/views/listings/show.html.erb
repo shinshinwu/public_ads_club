@@ -25,5 +25,20 @@
   <li>Once time base cost: <%= number_to_currency(@listing.base_amount) %></li>
   <li>Recurring cost: <%= number_to_currency(@listing.recurring_amount) %> charged <%= @listing.charge_frequency %></li>
   <li>Minimum Lease: <%= distance_of_time_in_words_to_now(@listing.min_lease_days.days.from_now) %></li>
-  <button>Contact</button>
+  <button id="contact-button">Contact</button>
 </ul>
+
+<div id="contact-listing">
+  <%= render partial: "message", locals: { message: Message.new(listing_id: @listing.id) ,url: messages_path, method: :post} %>
+</div>
+
+
+<% content_for :javascripts do %>
+<script type="text/javascript">
+  $(function() {
+    $("#contact-button").click(function(){
+      $("#contact-listing").show();
+    });
+  });
+</script>
+<% end %>

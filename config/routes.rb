@@ -19,4 +19,7 @@ Rails.application.routes.draw do
 
   resources :listings do
   end
+
+  resources :messages, only: [:create, :show] do
+  end
 end
