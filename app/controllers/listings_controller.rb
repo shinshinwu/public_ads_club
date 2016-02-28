@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_filter :authenticate_user!, only: [:create, :update, :messages]
-  before_filter :set_listing_context, only: [:show, :edit, :update, :messages]
+  before_filter :set_listing_context, except: [:index, :new, :create]
 
   def index
     @listings = Listing.includes(:address)
@@ -68,6 +68,13 @@ class ListingsController < ApplicationController
       flash[:error] = "Sorry, messages not found"
       redirect_to listing_path(@listing) and return
     end
+  end
+
+  def payments
+  end
+
+  def new_payment
+    @transaction = Transaction.new(listing_id: @listing.id)
   end
 
   private

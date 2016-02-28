@@ -1,0 +1,7 @@
+<h1>Submit Your Payment to Secure The Listing</h1>
+
+<% if current_user.customer_id.present? %>
+  <%= link_to "Pay with your card on file", transactions_path(transaction: {listing_id: @listing.id}), method: :post %>
+<% else %>
+  <%= render partial: "payment_form", locals: { price: @listing.base_amount*100, transaction: @transaction } %>
+<% end %>

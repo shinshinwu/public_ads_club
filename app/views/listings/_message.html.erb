@@ -3,7 +3,7 @@
 <%= form_for message, url: url, method: method, html: {class: "form"} do |f| %>
   <fieldset>
 
-    <%= f.hidden_field :listing_id, value: message.listing_id %>
+  <%= f.hidden_field :listing_id, value: message.listing_id %>
 
   <div>
     <%= f.label :start_date, "What's the desired start date of your ad?" %>

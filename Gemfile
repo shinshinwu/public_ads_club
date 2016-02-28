@@ -29,6 +29,9 @@ gem 'bcrypt', '~> 3.1.7'
 # file and image upload awesomeness
 gem 'paperclip', '~> 4.3'
 
+# payment processor
+gem 'stripe', '~> 1.36'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

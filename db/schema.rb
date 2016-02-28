@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227102123) do
+ActiveRecord::Schema.define(version: 20160227130133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,24 @@ ActiveRecord::Schema.define(version: 20160227102123) do
     t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "transaction_id"
+  end
+
+  add_index "messages", ["transaction_id"], name: "index_messages_on_transaction_id", using: :btree
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer  "seller_id"
+    t.integer  "buyer_id"
+    t.integer  "listing_id"
+    t.date     "expires_at"
+    t.datetime "last_charged_at"
+    t.string   "last_cc_error"
+    t.boolean  "auto_renewal"
+    t.string   "renewal_period"
+    t.float    "price"
+    t.string   "charge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,6 +87,8 @@ ActiveRecord::Schema.define(version: 20160227102123) do
     t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "customer_id"
+    t.string   "payment_token"
   end
 
 end
