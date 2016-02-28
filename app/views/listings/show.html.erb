@@ -1,0 +1,107 @@
+<div class="container">
+
+  <!-- Message Modal -->
+  <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title text-center" id="myModalLabel">Send a message to the pulic<span class="orange">ad</span> owner</h4>
+        </div>
+        <div class="modal-body">
+          <%= render partial: "message", locals: { message: Message.new(listing_id: @listing.id) ,url: messages_path, method: :post} %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container col-sm-12">
+    <h1>&nbsp;&nbsp;
+      <%= @listing.title %>
+        <% if @listing.user == current_user %>
+          <div class="btn btn-warning">
+            <%= link_to "Edit Listing", edit_listing_path(@listing), class: "no-link-styling" %>
+          </div>
+        <% else %>
+          <div id="contact-button" class="btn btn-warning" data-toggle="modal" data-target="#messageModal">Contact</div>
+      <% end %>
+    </h1>
+
+    <hr>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="orange-border sm-margin sm-padding">
+            <div class="row">
+              <div class="col-sm-12 col-md-5 col-lg-5">
+                <%= image_tag(@listing.photo.url, class: "img-responsive img-thumbnail") %>
+              </div>
+
+              <div class="col-sm-12 col-md-7 col-lg-7">
+                <div class="row sm-margin">
+                  <div class="pull-left">
+                    <h5><span>
+                      <%= number_to_currency(@listing.recurring_amount) %> <%= @listing.renewal_period_label %>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <%= number_to_currency(@listing.base_amount) %> one time set-up fee
+                    </span></h5>
+                  </div>
+                  <div class="pull-right">
+                    <h5>Width: <%= @listing.width %> in | Height: <%= @listing.height %> in | <%= @listing.area %> SqIn</h5>
+                  </div>
+                </div>
+
+                <div class="row sm-margin">
+                  <h4><span class="fa fa-map-marker icon"></span>&nbsp;&nbsp;Corner of <%= @listing.address.line_1 %> and <%= @listing.address.line_2 %>, <%= @listing.address.city %>, <%= @listing.address.state %> <%= @listing.address.zipcode %> <%= @listing.address.country %></h4>
+                </div>
+
+                <div class="row sm-margin">
+                  <h5>
+                    <div class="col-sm-4 orange">Type</div>
+                    <div class="col-sm-8"><%= @listing.category %></div>
+                  </h5>
+                </div>
+
+                <div class="row sm-margin">
+                  <h5>
+                    <div class="col-sm-4 orange">Availability:</div>
+                    <div class="col-sm-8"><%= @listing.is_available ? "Available" : "Unavailable" %></div>
+                  </h5>
+                </div>
+
+                <div class="row sm-margin">
+                  <h5>
+                    <div class="col-sm-4 orange">Reference ID:</div>
+                    <div class="col-sm-8"><%= @listing.ref_id %></div>
+                  </h5>
+                </div>
+
+                <div class="row sm-margin">
+                  <h5>
+                    <div class="col-sm-4 orange">Description:</div>
+                    <div class="col-sm-8"><%= @listing.description %></div>
+                  </h5>
+                </div>
+
+                <div class="row sm-margin">
+                  <h5>
+                    <div class="col-sm-4 orange">Owned By:</div>
+                    <div class="col-sm-8"><%= @listing.company_name %></div>
+                  </h5>
+                </div>
+
+                <div class="row sm-margin">
+                  <h5>
+                    <div class="col-sm-4 orange">Minimum Lease:</div>
+                    <div class="col-sm-8"><%= distance_of_time_in_words_to_now(@listing.min_lease_days.days.from_now) %></div>
+                  </h5>
+                </div>
+              </div> <!-- / col-sm-12 -->
+            </div><!-- / row -->
+          </div><!-- / orang-border -->
+        </div><!-- / col-sm-12 -->
+      </div><!-- / row -->
+    </div><!-- / container -->
+
+  </div>
+</div>

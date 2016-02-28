@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PublicAds</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+<link rel="stylesheet" type="text/css" href="https://js.arcgis.com/3.13/esri/css/esri.css">
+<link rel="stylesheet" type="text/css" href="https://esri.github.io/bootstrap-map-js/src/css/bootstrapmap.css">
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+    <div class="container topnav">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to image_tag("publicad-logo-nav.png", width: 150, height: 50), root_path, class: "navbar-brand topnav" %>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <% unless logged_in? -%>
+            <li>
+              <%= link_to "Sign Up", signup_users_path %>
+            </li>
+            <li>
+              <%= link_to "Login", login_users_path %>
+            </li>
+          <% else -%>
+            <li>
+              <%= link_to "Profile", profile_users_path %>
+            </li>
+            <li>
+              <%= link_to "Create Listing", new_listing_path %>
+            </li>
+            <li>
+              <%= link_to "Logout", logout_users_path, method: "delete" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+    </nav>
+
+
+  <div class="top-margin"></div>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+
+  <div class="content">
+    <%= yield %>
+  </div>
+
+  <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <p class="copyright text-muted small">Copyright &copy; Public Ads 2016. All Rights Reserved</p>
+      </div>
+    </div>
+  </div>
+</footer>
+  <%= yield :javascripts %>
+</body>
+</html>

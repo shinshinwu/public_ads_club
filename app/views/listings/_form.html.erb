@@ -1,0 +1,162 @@
+<div class="container col-sm-1"></div>
+<div class="container col-sm-10">
+  <%= form_for @listing, url: url, method: method, html: {class: "form form-horizontal", style: "height:100%;", multipart: true} do |f| %>
+
+    <legend>public<span class="orange">ad</span> location</legend>
+
+    <div class="form-group">
+      <%= label :line_1, "Cross Street #1 (ex: Summer St)", class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <%= text_field_tag "listing[address][line_1]", @address.line_1, required: true, required: true, class: "form-control" %>
+      </div>
+
+      <%= label :line_1, "Cross Street #2", class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <%= text_field_tag "listing[address][line_2]", @address.line_2, required: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label :city, "City", class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <%= text_field_tag "listing[address][city]", @address.city, required: true, class: "form-control" %>
+      </div>
+
+      <%= label :state, "State", class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <%= text_field_tag "listing[address][state]", @address.state, required: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label :zipcode, "Zip Code", class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <%= text_field_tag "listing[address][zipcode]", @address.zipcode, required: true, class: "form-control" %>
+      </div>
+
+      <%= label :country, "Country", class: "col-sm-3 control-label" %>
+        <div class="col-sm-3">
+        <%= text_field_tag "listing[address][country]", @address.country, required: true, class: "form-control" %>
+      </div>
+    </div class="form-group">
+
+    <legend>public<span class="orange">ad</span> details</legend>
+
+    <div class="form-group">
+      <%= f.label :title, class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <%= f.text_field :title, required: true, class: "form-control" %>
+      </div>
+
+      <%= f.label :category, "Type (ex. Billboard, Bus Stop)", class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <%= f.text_field :category, required: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
+        <%= f.text_area :description, required: true, class: "form-control", rows: "3" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :company_name, class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <%= f.text_field :company_name, required: true, class: "form-control" %>
+      </div>
+
+      <%= f.label :phone, class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <%= f.telephone_field :phone, required: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :ref_id, "Reference ID", class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
+        <%= f.text_field :ref_id, required: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :width, "Width", class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <%= f.number_field :width, required: true, min: 0, class: "form-control" %>
+          <div class="input-group-addon">inches</div>
+        </div>
+      </div>
+
+      <%= f.label :height, "Height (inches)", class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <%= f.number_field :height, required: true, min: 0, class: "form-control" %>
+          <div class="input-group-addon">inches</div>
+        </div>
+      </div>
+    </div>
+
+    <legend>public<span class="orange">ad</span> pricing</legend>
+
+    <div class="form-group">
+      <%= f.label :base_amount, "One Time Base Charge", class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <%= f.number_field :base_amount, required: true, min: 0, step: 0.01, class: "form-control" %>
+        </div>
+      </div>
+
+      <%= f.label :recurring_amount, "Recurring Charges", class: "col-sm-2 control-label" %>
+      <div class="col-sm-2">
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <%= f.number_field :recurring_amount, required: true, min: 0, step: 0.01, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="input-group">
+          <div class="input-group-addon">per</div>
+          <%= f.select :charge_frequency, options_for_select([["Day", "daily"], ["Week", "weekly"], ["Month", "monthly"], ["Year", "yearly"]]), {}, {required: 'true', class: "form-control"} %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :min_lease_days, "Minimum Days to Lease", class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <%= f.number_field :min_lease_days, required: true, min: 1, class: "form-control" %>
+          <div class="input-group-addon">days</div>
+        </div>
+      </div>
+
+      <%= f.label :is_available, "Currently Available?", class: "col-sm-2 control-label" %>
+      <div class="col-sm-2">
+        <label class="radio-inline">
+          <%= f.radio_button :is_available, 1 %> Yes
+        </label>
+      </div>
+
+      <div class="col-sm-2">
+        <label class="radio-inline">
+          <%= f.radio_button :is_available, 0 %> No
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :photo, "Ad Space Photo", class: "col-sm-3 control-label" %>
+      <div class="col-sm-3">
+        <%= f.file_field :photo %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-6"></div>
+      <%= f.submit "Submit", :class => 'col-sm-2 btn btn-warning' %>
+    </div>
+  <% end %>
+</div>

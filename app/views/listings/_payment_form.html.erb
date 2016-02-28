@@ -1,0 +1,12 @@
+<%= form_for transaction, url: transactions_path, method: :post, html: {class: "form sm-margin"} do |f| %>
+    <%= f.hidden_field :listing_id, value: transaction.listing_id %>
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_UmlP5FboOow6zB1GUwUfRfJS"
+    data-amount=<%= price %>
+    data-name="Public Ads"
+    data-email=<%= current_user.email %>
+    data-description=<%= "Deposit for listing no.#{transaction.listing_id}" %>
+    data-locale="auto">
+  </script>
+<% end %>

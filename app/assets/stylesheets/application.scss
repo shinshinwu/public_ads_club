@@ -1,0 +1,377 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ */
+
+@import "bootstrap-sprockets";
+@import "font-awesome-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+ /*!
+ * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
+p,
+.form {
+  color: black;
+  margin: 50px 0;
+}
+
+.alert {
+  background-color: #F89838;
+  text-align:       center;
+  font-weight:      bold;
+  color:            white;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.sm-margin {
+  margin: 25px 5px;
+}
+
+.sm-padding {
+  padding: 15px 5px;
+}
+
+.no-link-styling {
+  color:   white;
+  text-decoration: none;
+}
+
+a.no-link-styling:hover,
+a.no-link-styling:focus {
+  color:   white;
+  text-decoration: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.content {
+  min-height: 500px;
+}
+
+.top-margin {
+  margin-top: 75px;
+}
+
+.sm-top-margin {
+  margin-top: 50px;
+}
+
+.sm-bottom-margin {
+  margin: 0 0 15px 0;
+}
+
+.orange {
+  color:       #F89838;
+}
+
+.orange-border {
+  border-radius:  5px;
+  border:         4px solid #F89838;
+}
+
+.topnav {
+    font-size: 14px;
+}
+
+.lead {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.navbar {
+  min-height: 75px;
+}
+
+ul.navbar-right {
+  margin-top: 10px;
+}
+
+.intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: image-url("landing-page-bg.png") no-repeat center center;
+    background-size: cover;
+}
+
+.nav-tabs li.active a,
+.nav-tabs li a:hover
+.nav-tabs li a:focus {
+  background-color: #F89838 !important;
+  color: white !important;
+}
+
+.nav-tabs li a {
+  color: #F89838 !important;
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.intro-message h1,
+.intro-message h2 {
+  margin: 25px 0;
+  color: black;
+}
+
+.intro-message h1 {
+  font-size: 4em;
+}
+
+#intro-box {
+  height: 300px;
+  background-color: white;
+  opacity: 0.95;
+}
+
+#intro-box .split-pannels {
+  opacity: 1;
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+@media(max-width:767px) {
+    .intro-message {
+        padding-bottom: 15%;
+    }
+
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+}
+
+.network-name {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.content-section-a {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+.content-section-b {
+    padding: 50px 0;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading-spacer {
+    float: left;
+    width: 200px;
+    border-top: 3px solid #e7e7e7;
+}
+
+.banner {
+    padding: 100px 0;
+    color: #f8f8f8;
+    background: image-url("banner-bg.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.banner h2 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 3em;
+}
+
+.banner ul {
+    margin-bottom: 0;
+}
+
+.banner-social-buttons {
+    float: right;
+    margin-top: 0;
+}
+
+@media(max-width:1199px) {
+    ul.banner-social-buttons {
+        float: left;
+        margin-top: 15px;
+    }
+}
+
+@media(max-width:767px) {
+    .banner h2 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+        font-size: 3em;
+    }
+
+    ul.banner-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.banner-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+}
+
+footer {
+    padding: 25px 0;
+    background-color: #f8f8f8;
+}
+
+p.copyright {
+    margin: 15px 0 0;
+}
+
+/*//////(START)LISTING INDEX STYLING SECTION*/
+#infoPane {
+    width: 100%;
+    margin-top: 50px;
+    border: none;
+    height: 250px;
+    position: relative;
+    max-height: 300px;
+    border: 2px solid black;
+    overflow: scroll;
+    margin-left: 8px;
+    opacity: 0;
+}
+#map {
+    margin-top: 5px;
+    min-height: 500px;
+    max-height: 800px;
+    height: 100%;
+    position: relative;
+    border: 2px solid black;
+}
+p.texty{
+  color: black;
+  padding-bottom: 10px;
+}
+div#infoPane div{
+  margin: 0;
+  padding: 0;
+}
+  div#infoPane div p{
+  margin: 0;
+  padding: 0;
+}
+div.container-fluid.map-div{
+  margin-right: 0;
+  padding-right: 0;
+  padding-top: 70px;
+  padding-bottom: 0px;
+}
+div.info-pane-description{
+  padding: 0;
+  margin: 0;
+}
+div.info-pane-description p {
+  padding: 2% 5% 0;
+  margin: 0;
+  text-align: center;
+}
+div#infoPane div p {
+  text-align: center;
+  padding: 0 20%;
+}
+#infoPane {
+    transition:all 1s ease;
+    -moz-transition:all 1s ease;
+    -webkit-transition:all 1s ease;
+    -o-transition:all 1s ease;
+    -ms-transition:all 1s ease;
+}
+a.btn.btn-warning.btn-lg.listings-button{
+      transition:all 1s ease;
+    -moz-transition:all 1s ease;
+    -webkit-transition:all 1s ease;
+    -o-transition:all 1s ease;
+    -ms-transition:all 1s ease;
+    opacity: 0;
+}
+a.btn.btn-warning.btn-lg.listings-button.visible{
+    opacity: 1;
+}
+#infoPane.visible {
+    opacity: 1;
+}
+h1.text-center.info-pane-title{
+  padding-top: 20px;
+  margin: 0;
+}
+.ad-txt{
+  color: rgb(252, 159, 86);
+}
+div#infoPane div p.listing-info-txt{
+  padding-bottom: 5px;
+}
+#infoPane::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+#infoPane::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+/*//////(END)LISTING INDEX STYLING SECTION*/
+
+
+
+/*<!-- (START) HOME PAGE STYLING (MARLON) -->*/
+hr.section-heading-spacer{
+  margin: 10px 0;
+  display: block;
+}
+h2.section-heading{
+  margin-bottom: 10px;
+}
+p.home.lead{
+  margin-top: 10px;
+}
+/*<!-- (END) HOME PAGE STYLING (MARLON) -->*/
