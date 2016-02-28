@@ -1,25 +1,14 @@
-<!-- <h1>Profile</h1>
-
-<ul>
-  <li>First Name: <%= @user.first_name %></li>
-  <li>Last Name: <%= @user.last_name %></li>
-  <li>Email: <%= @user.email %></li>
-  <li>Phone: <%= number_to_phone(@user.phone) %></li>
-</ul>
-
-<%#= link_to "Edit Profile", edit_users_path %> -->
-
 <div class="container">
   <div class="container bootstrap snippet">
     <div class="row">
-      <div class="col-sm-10"><h1><%= @user.name %>'s Profile</h1></div>
+      <div class="col-sm-10"><h1><%= @user.name %>'s Club Profile</h1></div>
     </div>
 
     <div class="row">
       <div class="col-sm-3"><!--left col-->
 
         <ul class="list-group">
-          <li class="list-group-item text-muted"><i class="fa fa-user fa-1x"></i> Profile</li>
+          <li class="list-group-item text-muted"><i class="fa fa-user fa-1x"></i> Club Profile</li>
           <li class="list-group-item text-right"><span class="pull-left">
             <strong>Email</strong></span>
             <%= @user.email %>
@@ -41,7 +30,7 @@
         </ul>
 
         <ul class="list-group">
-          <li class="list-group-item text-muted"><i class="fa fa-dashboard fa-1x"></i> Activity</li>
+          <li class="list-group-item text-muted"><i class="fa fa-dashboard fa-1x"></i> Club Activity</li>
           <li class="list-group-item text-right">
             <span class="pull-left">
               <strong>Posted public<span class="orange">ad</span> Listings</strong>

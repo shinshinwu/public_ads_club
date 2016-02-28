@@ -15,7 +15,7 @@
                 <div class="tab-pane active" id="request">
                   <div class="row">
                     <div id="request-section" class="col-xs-12">
-                      <h1 class="text-center hidden-xs">The only public<span class="orange">ad</span> space marketplace</h1>
+                      <h1 class="text-center hidden-xs">Join the only public<span class="orange">ad</span> space club</h1>
                       <h2 class="text-center visible-xs" style="color:black;">The only public<span class="orange">ad</span> space marketplace</h2>
                       <div class="visible-xs">
                         <%= link_to "Search for your ideal public ad space".html_safe, listings_path, class: "btn btn-warning", data: { no_turbolink: true } %>
@@ -31,7 +31,7 @@
                   <div class="row">
                     <div id="listing-section" class="col-xs-12">
                       <h2 class="text-center hidden-xs">Start listing your public<span class="orange">ad</span> space for <span class="orange">free</span> <br />by creating an account today</h2>
-                      <h3 class="text-center visible-xs" style="color:black;">Start listing your public<span class="orange">ad</span> space for <span class="orange">free</span> by creating an account today</h3>
+                      <h3 class="text-center visible-xs" style="color:black;">Start listing your public<span class="orange">ad</span> space for <span class="orange">free</span> by join the club today</h3>
                       <%= form_for @user, url: users_path, method: :post, html: {class: "signup-form form form-inline"} do |f| %>
                         <div class="form-group">
                           <%= f.label :email %>
@@ -70,9 +70,9 @@
     <div class="row">
       <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
         <div class="clearfix"></div>
-        <h2 class="section-heading">Request a public<span class="orange">ad</span> space</h2>
+        <h2 class="section-heading">Join the public<span class="orange">ad</span> club</h2>
         <hr class="section-heading-spacer"><br>
-        <p class="home lead">Finding the perfect ad space to promote your business, products, or cause is easier than ever thanks to public<span class="ad-txt">ad</span>. Simple browse our map, find the listing/s you like most, and submit a request. Secure your dream adverstisement space in less than 3 minutes, it's that simple. </p>
+        <p class="home lead">Finding the perfect ad space to promote your business, products, or cause is easier than ever thanks to public<span class="ad-txt">ad</span>. Simply browse our map, find the listing/s you like most, and submit a request. Secure your dream adverstisement space in less than 3 minutes, it's that simple. </p>
         <%= link_to "Find your ad space", listings_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
       </div>
       <div class="col-lg-5 col-sm-pull-6  col-sm-6">
@@ -89,7 +89,7 @@
     <div class="row">
       <div class="col-lg-5 col-sm-6">
         <div class="clearfix"></div>
-        <h2 class="section-heading">Listing a public<span class="orange">ad</span> space</h2>
+        <h2 class="section-heading">Join the public<span class="orange">ad</span> club</h2>
         <hr class="section-heading-spacer"><br>
         <p class="home lead">Do you own out-of-home media space? Are you tired of paying those high advertisement agency fee's? List your sign for free today by creating a profile in under 3 minutes. We'll make an instantly marketeable profile for your public ad space that can be shared with a worldwide audience. Expand your horizons, increase your revenue. List with public<span class="ad-txt">ad</span> today.</p>
         <%= link_to "List your ad space", new_listing_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
