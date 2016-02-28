@@ -1,29 +1,172 @@
+<style>
+#infoPane {
+    width: 100%;
+    margin-top: 50px;
+    border: none;
+    height: 200px;
+    position: relative;
+    max-height: 300px;
+    border: 2px solid black;
+    overflow: scroll;
+    margin-left: 8px;
+    opacity: 0;
+}
+#map {
+    margin-top: 6px;
+    min-height: 500px;
+    max-height: 800px;
+    height: 100%;
+    position: relative;
+    border: 2px solid black;
+}
+p.texty{
+  color: white;
+}
+div#infoPane div{
+  margin: 0;
+  padding: 0;
+}
+  div#infoPane div p{
+  margin: 0;
+  padding: 0;
+}
+div.container-fluid.map-div{
+  margin-right: 0;
+  padding-right: 0;
+}
+div.info-pane-title{
+  padding: 0;
+  margin: 0;
+}
+div.info-pane-title p {
+   padding: 50px 0 0;
+  margin: 0;
+  text-align: center; 
+}
+#infoPane {
+    transition:all 1s ease;
+    -moz-transition:all 1s ease;
+    -webkit-transition:all 1s ease;
+    -o-transition:all 1s ease;
+    -ms-transition:all 1s ease;
+}
+
+#infoPane.visible {
+    opacity: 1;
+}
+
+
+</style>
+
 <h1>All Listings</h1>
 
-<% @listings.each do |listing| %>
-  <ul>
-    <%= image_tag(listing.photo.url) %>
-    <li>
-      <%= link_to listing.title, listing_path(listing) %>
-    </li>
-    <li><%= listing.is_available ? "Available" : "Unavailable" %></li>
-    <li>Type: <%= listing.category %></li>
-    <section>
-      <h3>Address:</h3>
-      <ul>
-        <li><%= listing.address.line_1 %> <%= listing.address.line_2 %></li>
-        <li><%= listing.address.city %>, <%= listing.address.state %> <%= listing.address.zipcode %></li>
-        <li><%= listing.address.country %></li>
-      </ul>
-    </section>
-    <li>Description: <%= listing.description %></li>
-    <li>Owned by: <%= listing.company_name %></li>
-    <li>Reference ID: <%= listing.ref_id %></li>
-    <li>Width: <%= listing.width %> inches</li>
-    <li>Height: <%= listing.height %> inches</li>
-    <li>Once time base cost: <%= number_to_currency(listing.base_amount) %></li>
-    <li>Recurring cost: <%= number_to_currency(listing.recurring_amount) %> charged <%= listing.charge_frequency %></li>
-    <li>Minimum Lease: <%= distance_of_time_in_words_to_now(listing.min_lease_days.days.from_now) %></li>
-    <button>Contact</button>
-  </ul>
+<div class="container-fluid map-div">
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="info-pane-title">
+        <p>Click on one of the map's markers to get started and see PublicAd information.</p>
+      </div>
+      <div id="infoPane" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'"></div>
+    </div>
+    <div class="col-xs-8">
+      <div id="map" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'"></div>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascripts do %>
+<script type="text/javascript">
+    var package_path = "//esri.github.com/bootstrap-map-js/src/js";
+    var dojoConfig = {
+        packages: [{
+            name: "application",
+            location: package_path
+        }]
+    };
+</script>
+<script type="text/javascript" src="//js.arcgis.com/3.13compact">
+</script>
+
+<script>
+  var map,
+      featureLayer,
+      template;
+
+      require([
+        "dojo/ready",
+        "dojo/on",
+        "dojo/dom",
+        "dijit/registry",
+        "dojo/dom-construct",
+        "dojo/parser",
+        "esri/map",
+        "application/bootstrapmap",
+        "esri/arcgis/utils",
+        "esri/domUtils",
+        "esri/dijit/Popup",
+        "esri/layers/FeatureLayer",
+        "esri/InfoTemplate",
+        "dijit/layout/ContentPane",
+        "dijit/layout/BorderContainer"
+      ], function(
+        ready,
+        on,
+        dom,
+        registry,
+        domConstruct,
+        parser,
+        Map,
+        BootstrapMap,
+        arcgisUtils,
+        domUtils,
+        Popup,
+        FeatureLayer,
+        InfoTemplate
+         ) {
+          ready(function() {
+              parser.parse();
+      map = BootstrapMap.create("map", {
+      basemap: "topo",  
+      center: [-122.45, 37.80], 
+      zoom: 14,
+      smartNavigation: true
+    });
+    map.on("click", function (evt) {
+      console.log(evt);
+    $( "#infoPane" ).toggleClass( "visible" );
+    });
+    map.infoWindow.set("popupWindow", false);
+    template = new InfoTemplate();
+    template.setTitle("<b>${description}</b>");
+    template.setContent("<div style='background-color:red;'><p style='text-align:center;'><b>Title:</b> ${Title}</p></div><div style='background-color:red;'><p class='texty' style='text-align:center;'><b>Description:</b> ${description}</p></div><div style='background-color:red;'><p style='text-align:center;'><b>Category:</b> ${category}</p></div><div style='background-color:red;'><p style='text-align:center;'><b>Is available:</b> ${is_available}</p></div><div style='background-color:red;'><p style='text-align:center;'><b>Size:</b> width=${width} and height=${height}</p></div><div style='background-color:red;'><p style='text-align:center;'><b>Set-up cost:</b> ${base_amount}</p></div><div style='background-color:red;'><p style='text-align:center;'><b>Charge frequency:</b> ${charge_frequency}</p></div><div style='background-color:red;'><p style='text-align:center;'><b>Minimum Lease Length:</b> ${minimum_lease_day}</p></div>");
+
+    featureLayer = new FeatureLayer("http://services5.arcgis.com/IsOQGGJ77Az9lKvg/ArcGIS/rest/services/sampleData/FeatureServer/0", {
+        mode: FeatureLayer.MODE_ONDEMAND,
+        outFields: ["Title", "description", "is_available", "company_name", "width", "height", "base_amount", "recurring_amount", "charge_frequency", "minimum_lease_day", "category"],
+        infoTemplate: template
+    });
+    map.addLayer(featureLayer);
+    initializeSidebar(map);
+});
+    function initializeSidebar(map) {
+      var popup = map.infoWindow;
+      popup.on("SelectionChange", function(){
+        displayPopupContent(popup.getSelectedFeature());
+      });
+      popup.on("ClearFeatures", function(){
+        registry.byId("infoPane").set("content", "");
+        domUtils.hide(dom.byId("pager"));
+      });
+      popup.on("SetFeatures", function() {
+          displayPopupContent(popup.getSelectedFeature());
+      });
+    }
+    function displayPopupContent(feature) {
+    if (feature) {
+        var content = feature.getContent();
+        registry.byId("infoPane").set("content", content);
+    }
+}
+});
+</script>
 <% end %>
