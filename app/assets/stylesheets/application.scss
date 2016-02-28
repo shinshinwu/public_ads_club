@@ -43,8 +43,18 @@ h6 {
     font-weight: 700;
 }
 
-p {
+p,
+.form {
   color: black;
+  margin: 50px;
+}
+
+.content {
+  min-height: 500px;
+}
+
+.top-margin {
+  margin-top: 100px;
 }
 
 .orange {

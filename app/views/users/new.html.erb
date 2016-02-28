@@ -1,14 +1,13 @@
-<%= form_for @user, html: {class: "form"} do |f| %>
-  <fieldset>
+<div class="container">
+  <%= form_for @user, html: {class: "form form-inline top-margin"} do |f| %>
+    <legend>Sign Up</legend>
+    <div class="form-group">
+      <%= f.email_field :email, required: true, class: "form-control", placeholder: "Email" %>
+    </div>
 
-  <legend>Sign Up</legend>
-
-  <%= f.label :email %>
-  <%= f.email_field :email, required: true %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password, required: true %>
-
-  <%= f.submit "Create my account", :class => 'pure-button' %>
-  </fieldset>
-<% end %>
+    <div class="form-group">
+      <%= f.password_field :password, required: true, class: "form-control", placeholder: "Password" %>
+    </div>
+    <%= f.submit "Create Account", :class => 'btn btn-default' %>
+  <% end %>
+</div>
