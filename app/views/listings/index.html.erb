@@ -3,7 +3,7 @@
     width: 100%;
     margin-top: 50px;
     border: none;
-    height: 200px;
+    height: 250px;
     position: relative;
     max-height: 300px;
     border: 2px solid black;
@@ -12,7 +12,7 @@
     opacity: 0;
 }
 #map {
-    margin-top: 6px;
+    margin-top: 5px;
     min-height: 500px;
     max-height: 800px;
     height: 100%;
@@ -20,7 +20,7 @@
     border: 2px solid black;
 }
 p.texty{
-  color: white;
+  color: black;
 }
 div#infoPane div{
   margin: 0;
@@ -33,13 +33,15 @@ div#infoPane div{
 div.container-fluid.map-div{
   margin-right: 0;
   padding-right: 0;
+  padding-top: 70px;
+  padding-bottom: 0px;
 }
-div.info-pane-title{
+div.info-pane-description{
   padding: 0;
   margin: 0;
 }
-div.info-pane-title p {
-   padding: 50px 0 0;
+div.info-pane-description p {
+  padding: 2% 5% 0;
   margin: 0;
   text-align: center; 
 }
@@ -54,17 +56,23 @@ div.info-pane-title p {
 #infoPane.visible {
     opacity: 1;
 }
-
-
+h1.text-center.info-pane-title{
+  padding-top: 20px;
+  margin: 0;
+}
+.ad-txt{
+  color: rgb(252, 159, 86);
+}
 </style>
 
-<h1>All Listings</h1>
+
 
 <div class="container-fluid map-div">
   <div class="row">
     <div class="col-xs-4">
-      <div class="info-pane-title">
-        <p>Click on one of the map's markers to get started and see PublicAd information.</p>
+      <h1 class="text-center info-pane-title">public<span class="ad-txt">ad</span></h1>
+      <div class="info-pane-description">
+        <p>Click on one of the map's markers to get started and see the public<span class="ad-txt">ad</span> information.</p>
       </div>
       <div id="infoPane" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'"></div>
     </div>
@@ -137,8 +145,8 @@ div.info-pane-title p {
     });
     map.infoWindow.set("popupWindow", false);
     template = new InfoTemplate();
-    template.setTitle("<b>${description}</b>");
-    template.setContent("<div style='background-color:red;'><p style='text-align:center;'><b>Title:</b> ${Title}</p></div><div style='background-color:red;'><p class='texty' style='text-align:center;'><b>Description:</b> ${description}</p></div><div style='background-color:red;'><p style='text-align:center;'><b>Category:</b> ${category}</p></div><div style='background-color:red;'><p style='text-align:center;'><b>Is available:</b> ${is_available}</p></div><div style='background-color:red;'><p style='text-align:center;'><b>Size:</b> width=${width} and height=${height}</p></div><div style='background-color:red;'><p style='text-align:center;'><b>Set-up cost:</b> ${base_amount}</p></div><div style='background-color:red;'><p style='text-align:center;'><b>Charge frequency:</b> ${charge_frequency}</p></div><div style='background-color:red;'><p style='text-align:center;'><b>Minimum Lease Length:</b> ${minimum_lease_day}</p></div>");
+    // template.setTitle("<b>${description}</b>");
+    template.setContent("<div><h3 class='ad-txt' style='text-align:center;'>${Title}</h3></div><div><p class='texty' style='text-align:center;'><span class='ad-txt'> Description:</span> ${description}</p></div><div><p style='text-align:center;'><span class='ad-txt'> Category:</span> ${category}</p></div><div><p style='text-align:center;'><span class='ad-txt'> Is available:</span> ${is_available}</p></div><div><p style='text-align:center;'><span class='ad-txt'> Size:</span> width=${width} and height=${height}</p></div><div><p style='text-align:center;'><span class='ad-txt'> Set-up cost:</span> ${base_amount}</p></div><div><p style='text-align:center;'><span class='ad-txt'> Charge frequency:</span> ${charge_frequency}</p></div><div><p style='text-align:center;'><span class='ad-txt'> Minimum Lease Length:</span> ${minimum_lease_day}</p></div>");
 
     featureLayer = new FeatureLayer("http://services5.arcgis.com/IsOQGGJ77Az9lKvg/ArcGIS/rest/services/sampleData/FeatureServer/0", {
         mode: FeatureLayer.MODE_ONDEMAND,
