@@ -133,7 +133,7 @@ div.info-pane-title p {
     });
     map.on("click", function (evt) {
       console.log(evt);
-    $( "#infoPane" ).toggleClass( "visible" );
+      $( "#infoPane" ).addClass( "visible" );
     });
     map.infoWindow.set("popupWindow", false);
     template = new InfoTemplate();
