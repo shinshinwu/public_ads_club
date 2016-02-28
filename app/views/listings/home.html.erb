@@ -1,0 +1,141 @@
+<a name="about"></a>
+<div class="intro-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="intro-message">
+          <div id="intro-box">
+            <div class="split-pannels">
+              <div class="row">
+                <div class="col-xs-6">
+                  <a href="#" id="request-button">Request</a>
+                </div>
+                <div class="col-xs-6">
+                  <a href="#" id="listing-button">Listing</a>
+                </div>
+              </div>
+
+              <div class="row">
+                <section id="request-section" class="col-xs-12">
+                  <p>a public<span class="orange">ad</span> space by</p>
+                  <ul>
+                    <%= link_to "See all ad space listings near my current location", listings_path, class: "btn btn-default btn-lg" %>
+                  </ul>
+                </section>
+
+                <section id="listing-section" class="col-xs-12">
+                  <p>Start listing your public <span class="orange">ad</span> space for free by creating an account today</p>
+                  <%= form_for @user, url: users_path, method: :post, html: {class: "signup-form"} do |f| %>
+                    <%= f.label :email %>
+                    <%= f.email_field :email, required: true %>
+
+                    <%= f.label :password %>
+                    <%= f.password_field :password, required: true %>
+
+                    <%= f.submit "join", :class => 'btn btn-default btn-lg' %>
+                  <% end %>
+                </section>
+              </div>
+            </div>
+          </div>
+<!--           <h1>Landing Page</h1>
+          <h3>A Template by Start Bootstrap</h3>
+          <hr class="intro-divider">
+          <ul class="list-inline intro-social-buttons">
+              <li>
+                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+              </li>
+              <li>
+                <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+              </li>
+              <li>
+                <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+              </li>
+          </ul> -->
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- /.container -->
+
+</div>
+<!-- /.intro-header -->
+
+<!-- Page Content -->
+<div class="content-section-b">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+        <hr class="section-heading-spacer">
+        <div class="clearfix"></div>
+        <h2 class="section-heading">Request a public <span class="orange">ad</span></h2>
+        <p class="lead">Bacon ipsum dolor amet pig strip steak hamburger jerky, alcatra porchetta t-bone cow brisket pastrami leberkas. Short loin kevin shoulder, pancetta drumstick sausage pork pork chop. Pork loin spare ribs pastrami pig. Shankle t-bone pastrami beef kielbasa sirloin. Pork belly kevin corned beef hamburger, jowl turducken ground round sausage beef ribs shankle chicken bresaola tail turkey ball tip. Tenderloin short loin strip steak picanha chicken pig.</p>
+      </div>
+      <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+        <%= image_tag("publicad-logo-lg.png", class:"img-responsive") %>
+      </div>
+    </div>
+  </div>
+    <!-- /.container -->
+</div>
+<!-- /.content-section-b -->
+
+<div class="content-section-a">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 col-sm-6">
+        <hr class="section-heading-spacer">
+        <div class="clearfix"></div>
+        <h2 class="section-heading">Request a public <span class="orange">ad</span></h2>
+        <p class="lead">Strip steak drumstick hamburger, doner prosciutto swine turkey frankfurter landjaeger cupim spare ribs ribeye bresaola bacon. Porchetta flank corned beef alcatra, pork loin sirloin prosciutto bacon cow pork belly. Pork chop filet mignon andouille, chicken corned beef short loin sausage cupim leberkas meatloaf pork loin.</p>
+      </div>
+      <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+        <%= image_tag("publicad-logo-lg.png", class:"img-responsive") %>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.content-section-a -->
+
+<a name="contact"></a>
+<div class="content-section-b">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 class="section-heading">Follow Us:</h2>
+      </div>
+      <div class="col-lg-6">
+        <ul class="list-inline banner-social-buttons">
+          <li>
+            <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+          </li>
+          <li>
+            <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Facebook</span></a>
+          </li>
+          <li>
+            <a href="#" class="btn btn-default btn-lg"<i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.banner -->
+
+<% content_for :javascripts do %>
+<script type="text/javascript">
+  $(function() {
+    $("#request-button").hover(function(){
+      $("#request-section").show();
+      $("#listing-section").hide();
+    });
+
+    $("#listing-button").hover(function(){
+      $("#listing-section").show();
+      $("#request-section").hide();
+    });
+  });
+</script>
+<% end %>

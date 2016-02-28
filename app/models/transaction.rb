@@ -9,6 +9,7 @@ class Transaction < ActiveRecord::Base
     begin
       customer = Stripe::Customer.create(
         source: token,
+        email: user.email,
         description: "Public Ads"
       )
     rescue => e

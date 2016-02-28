@@ -1,6 +1,10 @@
 class ListingsController < ApplicationController
   before_filter :authenticate_user!, only: [:create, :update, :messages]
-  before_filter :set_listing_context, except: [:index, :new, :create]
+  before_filter :set_listing_context, except: [:index, :new, :create, :home]
+
+  def home
+    @user = User.new
+  end
 
   def index
     @listings = Listing.includes(:address)
